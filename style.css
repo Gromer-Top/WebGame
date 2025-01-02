@@ -8,5 +8,6 @@ body {
 }
 
 #gameCanvas{
+  background: skyblue;
   border: 3px solid white;
 }
