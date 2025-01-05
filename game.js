@@ -1,7 +1,7 @@
 "use strict"
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
-
+ 
 let y = canvas.height / 2;
 let x = canvas.width / 2;
 let directionX = 0;
@@ -12,25 +12,21 @@ let speedX = 0;
 let radius = 20;
 let speed = 3;
 
+let mass = 1;
+const g = 9.8;
+let weight = mass * g;
+
 function left() {
   directionX = -1;
 }
 
-function right() {
+function right(){
   directionX = 1;
-}
-
-function up() {
-  directionY = -1;
-}
-
-function down() {
-  directionY = 1;
 }
 
 function move(){
   speedX = speed * directionX;
-  speedY = speed * directionY + gravity;
+  speedY = weight;
   x += speedX;
   y += speedY;
   if(x <= 0 + radius)
