@@ -16,23 +16,21 @@ let mass = 1;
 const g = 9.8;
 let weight = mass * g;
 
-function left() {
-  directionX = -1;
-}
-
-function right(){
-  directionX = 1;
-}
-
-function jump(){
- 
-}
+function left() {directionX = -1;}
+function right(){directionX = 1;}
+function jump() {}
 
 function move(){
   speedX = speed * directionX;
   speedY = weight;
   x += speedX;
   y += speedY;
+  detectCollision();
+  console.log("DirectionY: " + directionY);
+  console.log("DirectionX: " + directionX);
+}
+
+function detectCollision(){
   if(x <= 0 + radius)
   {
     directionX = 0;
@@ -53,8 +51,6 @@ function move(){
     directionY = 0;
     y = canvas.height - radius;
   }
-  console.log("DirectionY: " + directionY);
-  console.log("DirectionX: " + directionX);
 }
 
 function gameLoop() {
