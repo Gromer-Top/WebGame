@@ -11,3 +11,35 @@ body {
   background: skyblue;
   border: 3px solid white;
 }
+
+#btns{
+  position: absolute;
+  bottom: 80px;
+  width: 300px;
+  height: 150px;
+}
+#btns button{
+  position: absolute;
+  width: 70px;
+  height: 70px;
+}
+
+#btns #leftBtn{
+  bottom: 0;
+  left: 0;
+}
+
+#btns #rightBtn {
+  bottom: 0;
+  right: 0;
+}
+
+#btns #upBtn {
+  top: 0;
+  left: 115px;
+}
+
+#btns #downBtn {
+  bottom: 0;
+  left: 115px;
+}
