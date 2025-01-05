@@ -24,6 +24,10 @@ function right(){
   directionX = 1;
 }
 
+function jump(){
+ 
+}
+
 function move(){
   speedX = speed * directionX;
   speedY = weight;
