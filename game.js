@@ -6,6 +6,7 @@ let y = canvas.height / 2;
 let x = canvas.width / 2;
 let directionX = 0;
 let directionY = 0;
+let gravity = 2;
 let speedY = 0;
 let speedX = 0;
 let radius = 20;
@@ -29,7 +30,7 @@ function down() {
 
 function move(){
   speedX = speed * directionX;
-  speedY = speed * directionY;
+  speedY = speed * directionY + gravity;
   x += speedX;
   y += speedY;
   if(x <= 0 + radius)
