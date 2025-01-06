@@ -12,7 +12,7 @@ let speedX = 0;
 let radius = 20;
 let speed = 2;
 let deltaTime = 0;
-let ax = 0.1;
+let ax = 0.3;
 let timer;
 
 let isLeft = false;
@@ -24,14 +24,12 @@ let weight = mass * g;
 
 let leftBtn = document.getElementById("leftBtn");
 
-function left() {
-  directionX = -1;
-}
+function left() {directionX = -1;}
 function right(){directionX = 1;}
 function jump() {}
 function brake() {
-  
-  console.log(timer);
+  directionX = 0;
+  while(speedX > 0){speedX-= 0.01;}
 }
 
 function move(){
@@ -39,6 +37,9 @@ function move(){
   speedY = weight * 1;
   x += speedX;
   y += speedY;
+  if(directionX > 0){directionX-=0.05;}
+  if(directionX < 0){directionX+=0.05;}
+  if(speedX > 0){speedX-=0.05;}
   detectCollision();
 }
 
