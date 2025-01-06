@@ -2,8 +2,6 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
  
-let soundCollision = new Audio('./Sounds/ballCollision.mp3');
- 
 let y = canvas.height / 2;
 let x = canvas.width - 50;
 let directionX = 0;
@@ -14,9 +12,9 @@ let speedX = 0;
 let radius = 20;
 let ax = 0.1;
 
-let mass = 1;
-const g = 9.8;
-let weight = mass * g;
+let mass = 0.5;
+const ay = 9.8;
+let weight = mass * ay;
 
 let leftBtn = document.getElementById("leftBtn");
 
@@ -27,17 +25,22 @@ function brake() {
 
 }
 
+function playSoundCollision(){
+  let soundCollision = new Audio('./Sounds/ballCollision.mp3');
+  soundCollision.play();
+}
+
 function detectCollision(){
   if(x <= 0 + radius)
   {
-    soundCollision.play();
+    playSoundCollision();
     directionX = 1;
     speedX -= speedX * 0.7;
     x = radius;
   }
   if (x >= canvas.width - radius)
   {
-    soundCollision.play();
+    playSoundCollision();
     directionX = -1;
     speedX -= speedX * 0.7;
     x = canvas.width - radius;
