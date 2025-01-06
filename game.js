@@ -3,42 +3,54 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
  
 let y = canvas.height / 2;
-let x = canvas.width / 2;
+let x = canvas.width - 50;
 let directionX = 0;
 let directionY = 0;
 let gravity = 2;
 let speedY = 0;
 let speedX = 0;
 let radius = 20;
-let speed = 3;
+let speed = 2;
+let deltaTime = 0;
+let ax = 0.1;
+let timer;
+
+let isLeft = false;
+let isRight = false;
 
 let mass = 1;
 const g = 9.8;
 let weight = mass * g;
 
-function left() {directionX = -1;}
+let leftBtn = document.getElementById("leftBtn");
+
+function left() {
+  directionX = -1;
+}
 function right(){directionX = 1;}
 function jump() {}
+function brake() {
+  
+  console.log(timer);
+}
 
 function move(){
-  speedX = speed * directionX;
-  speedY = weight;
+  speedX += ax * directionX;
+  speedY = weight * 1;
   x += speedX;
   y += speedY;
   detectCollision();
-  console.log("DirectionY: " + directionY);
-  console.log("DirectionX: " + directionX);
 }
 
 function detectCollision(){
   if(x <= 0 + radius)
   {
-    directionX = 0;
-    x = 0 +radius;
+    speedX = 0;
+    x = 0 + radius;
   }
   if (x >= canvas.width - radius)
   {
-    directionX = 0;
+    speedX = 0;
     x = canvas.width - radius;
   }
   if (y <= 0 + radius)
