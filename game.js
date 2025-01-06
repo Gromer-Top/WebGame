@@ -19,34 +19,23 @@ let weight = mass * g;
 let leftBtn = document.getElementById("leftBtn");
 
 function left() {directionX = -1;ax = 1}
-function right(){directionX = 1;ax= 1}
+function right(){directionX = 1;ax= 1;}
 function jump() {}
 function brake() {
 
 }
 
-function move(){
-  speedX += (ax * directionX);
-  speedY = weight;
-  x += speedX;
-  y += speedY;
-  if(speedX > 0){speedX-=0.4;}
-  if(speedX < 0){speedX+=0.4;}
-  if(speedX.toFixed()== 0){speedX = 0;}
-  if(ax > 0){ax-= 0.03;}
-  if(ax < 0){ax=0;}
-  detectCollision();
-}
-
 function detectCollision(){
   if(x <= 0 + radius)
   {
-    speedX = 0;
-    x = 0 + radius;
+    directionX = 1;
+    speedX -= speedX * 0.7;
+    x = radius;
   }
   if (x >= canvas.width - radius)
   {
-    speedX = 0;
+    directionX = -1;
+    speedX -= speedX * 0.7;
     x = canvas.width - radius;
   }
   if (y <= 0 + radius)
@@ -57,9 +46,25 @@ function detectCollision(){
   if (y >= canvas.height - radius)
   {
     directionY = 0;
-    y = canvas.height - radius;
+    y = canvas.height-radius;
   }
 }
+
+
+function move(){
+  
+  speedX += ax;
+  speedY = weight;
+  x += speedX * directionX;
+  y += speedY;
+  detectCollision();
+  if(speedX.toFixed()== 0){speedX = 0;}
+  if(speedX > 0){speedX-=0.2;}
+  if(speedX < 0){speedX+=0.2;}
+  if(ax > 0){ax-= 0.03;}
+  if(ax < 0){ax=0;}
+}
+
 
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -67,6 +72,9 @@ function gameLoop() {
     ctx.font = "bold 20pt Arial";
     ctx.fillText("Speed: " + speedX.toFixed(2), 10, 25);
     ctx.fillText("ax: " + ax.toFixed(2), 170, 25);
+    ctx.fillText("DX: " + directionX.toFixed(2), 10, 50);
+    ctx.fillText("x: " + x.toFixed(), 140, 50);
+    ctx.fillText("y: " + y.toFixed(), 220, 50);
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, 2*Math.PI, false) ;
     ctx.fillStyle = 'red';
