@@ -10,13 +10,7 @@ let gravity = 2;
 let speedY = 0;
 let speedX = 0;
 let radius = 20;
-let speed = 2;
-let deltaTime = 0;
-let ax = 0.3;
-let timer;
-
-let isLeft = false;
-let isRight = false;
+let ax = 0.1;
 
 let mass = 1;
 const g = 9.8;
@@ -24,22 +18,23 @@ let weight = mass * g;
 
 let leftBtn = document.getElementById("leftBtn");
 
-function left() {directionX = -1;}
-function right(){directionX = 1;}
+function left() {directionX = -1;ax = 1}
+function right(){directionX = 1;ax= 1}
 function jump() {}
 function brake() {
-  directionX = 0;
-  while(speedX > 0){speedX-= 0.01;}
+
 }
 
 function move(){
-  speedX += ax * directionX;
-  speedY = weight * 1;
+  speedX += (ax * directionX);
+  speedY = weight;
   x += speedX;
   y += speedY;
-  if(directionX > 0){directionX-=0.05;}
-  if(directionX < 0){directionX+=0.05;}
-  if(speedX > 0){speedX-=0.05;}
+  if(speedX > 0){speedX-=0.4;}
+  if(speedX < 0){speedX+=0.4;}
+  if(speedX.toFixed()== 0){speedX = 0;}
+  if(ax > 0){ax-= 0.03;}
+  if(ax < 0){ax=0;}
   detectCollision();
 }
 
@@ -68,6 +63,10 @@ function detectCollision(){
 
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "black";
+    ctx.font = "bold 20pt Arial";
+    ctx.fillText("Speed: " + speedX.toFixed(2), 10, 25);
+    ctx.fillText("ax: " + ax.toFixed(2), 170, 25);
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, 2*Math.PI, false) ;
     ctx.fillStyle = 'red';
