@@ -78,10 +78,10 @@ function gameLoop() {
     ctx.fillStyle = "black";
     ctx.font = "bold 20pt Arial";
     ctx.fillText("Speed: " + speedX.toFixed(2), 10, 25);
-    ctx.fillText("ax: " + ax.toFixed(2), 170, 25);
+    ctx.fillText("Ax: " + ax.toFixed(2), 170, 25);
     ctx.fillText("DX: " + directionX.toFixed(2), 10, 50);
-    ctx.fillText("x: " + x.toFixed(), 140, 50);
-    ctx.fillText("y: " + y.toFixed(), 220, 50);
+    ctx.fillText("X: " + x.toFixed(), 125, 50);
+    ctx.fillText("Y: " + y.toFixed(), 205, 50);
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, 2*Math.PI, false) ;
     ctx.fillStyle = 'red';
