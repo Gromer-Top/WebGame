@@ -9,6 +9,7 @@ body {
 }
 
 #gameCanvas{
+  margin-top:30%;
   background: skyblue;
   border: 3px solid white;
   height: auto;
