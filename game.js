@@ -9,7 +9,9 @@ let directionY = 0;
 let speedY = 0;
 let speedX = 0;
 let radius = 20;
+let speedMax = 10;
 let ax = 0.1;
+let axMax = 2;
 let ay = 1;
 
 function left() {directionX = -1;ax += 0.7;}
@@ -28,14 +30,16 @@ function detectCollision(){
   {
     playSoundCollision();
     directionX = 1;
-    speedX -= speedX * 0.7;
+    ax -= ax * 0.6;
+    speedX -= speedX * 0.8;
     x = radius;
   }
   if (x >= canvas.width - radius)
   {
     playSoundCollision();
     directionX = -1;
-    speedX -= speedX * 0.7;
+    ax -= ax * 0.6;
+    speedX -= speedX * 0.8;
     x = canvas.width - radius;
   }
   if (y <= 0 + radius)
@@ -51,7 +55,9 @@ function detectCollision(){
 }
 
 function move(){
+  if(ax>axMax){ax=axMax;}
   speedX += ax;
+  if(speedX > speedMax){speedX=speedMax;}
   speedY += ay;
   x += speedX * directionX;
   y += speedY;
