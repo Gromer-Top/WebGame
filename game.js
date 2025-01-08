@@ -2,17 +2,14 @@
 
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
- 
-//Статы игрока(шарика)>Position and Physical<
-//Позиция
-let y = canvas.height / 2;
-let x = canvas.width - 72;
 
+//Кнопки
 let leftBtn = document.getElementById("leftBtn");
 let rightBtn = document.getElementById("rightBtn");
 let upBtn = document.getElementById("upBtn");
 let downBtn = document.getElementById("downBtn");
 
+//Статы игрока(шарика)>Position and Physical<
 //Физические характеристики
 let speedY = 0;
 let speedX = 0;
@@ -24,8 +21,12 @@ let ax = 0.1;
 let axMax = 2;
 let ay = 1;
 
+//Позиция
+let y = canvas.height - radius;
+let x = canvas.width - 72;
+
 //Состояние, когда шарик на полу
-let isGround = false;
+let isGround = true;
 
 //Кнопки
 function controle() {
@@ -95,6 +96,10 @@ function detectCollision(){
   if (y <= 0 + radius)
   {
     y = radius;
+  }
+  if (y >= canvas.height - radius && isGround == false)
+  {
+    playSoundCollision();
   }
   
   if (y >= canvas.height - radius)
