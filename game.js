@@ -24,6 +24,7 @@ let ax = 0.1;
 let axMax = 2;
 let ay = 1;
 
+//Состояние, когда шарик на полу
 let isGround = false;
 
 //Кнопки
