@@ -1,4 +1,5 @@
 "use strict"
+
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
  
@@ -6,6 +7,11 @@ const ctx = canvas.getContext('2d');
 //Позиция
 let y = canvas.height / 2;
 let x = canvas.width - 72;
+
+let leftBtn = document.getElementById("leftBtn");
+let rightBtn = document.getElementById("rightBtn");
+let upBtn = document.getElementById("upBtn");
+let downBtn = document.getElementById("downBtn");
 
 //Физические характеристики
 let speedY = 0;
@@ -21,15 +27,27 @@ let ay = 1;
 let isGround = false;
 
 //Кнопки
-function left() {ax -= 0.7;}
-function right(){ax += 0.7;}
-function jump(){
-  if(isGround==true){
-    speedY=0;
-    ay = jumpForce;
-  }
+function controle() {
+  leftBtn.addEventListener('click',
+  function left(){
+      ax -= 0.7;
+  });
+  rightBtn.addEventListener('click',
+  function right() {
+    ax += 0.7;
+  });
+  upBtn.addEventListener('click',
+  function jump(){
+    if(isGround==true){
+      speedY=0;
+      ay = jumpForce;
+    }
+  });
+  downBtn.addEventListener('click',
+  function brake() {
+    ax = 0;
+  });
 }
-function brake(){}
 
 //Звуки
 function playSoundCollision(){
@@ -121,6 +139,7 @@ function drawPlayer(){
 //Главная функция
 function main() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    controle();
     drawStats();
     drawPlayer();
     requestAnimationFrame(main);
