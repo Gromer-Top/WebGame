@@ -28,25 +28,43 @@ let isGround = false;
 
 //Кнопки
 function controle() {
-  leftBtn.addEventListener('click',
-  function left(){
+  leftBtn.addEventListener('click', 
+    function left() {
       ax -= 0.7;
-  });
+    });
   rightBtn.addEventListener('click',
-  function right() {
-    ax += 0.7;
-  });
+    function right() {
+      ax += 0.7;
+    });
   upBtn.addEventListener('click',
-  function jump(){
-    if(isGround==true){
-      speedY=0;
-      ay = jumpForce;
-    }
-  });
+    function jump() {
+      if(isGround==true){
+        speedY=0;
+        ay = jumpForce;
+      }
+    });
   downBtn.addEventListener('click',
-  function brake() {
-    ax = 0;
-  });
+    function brake() {
+      ax = 0;
+    });
+  addEventListener("keydown",
+    function(event)
+    {
+      if (event.code == "KeyA"){
+        function left() {
+          ax -= 0.7;
+        }
+      }
+      if (event.code == "KeyD") {
+      right();
+      }
+      if (event.code == "KeyW") {
+        jump();
+      }
+      if (event.code == "KeyS") {
+        brake();
+      }
+    });
 }
 
 //Звуки
