@@ -80,7 +80,6 @@ function move(){
   if(ax.toFixed()== 0){ax = 0;}
   if(ax > 0){ax-= 0.03;}
   if(ax < 0){ax+= 0.03;}
-
   if(ay < gravity){ay += 0.05;}
 }
 
