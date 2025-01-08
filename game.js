@@ -72,7 +72,6 @@ function move(){
   if(ax < 0){ax=0;}
 }
 
-
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "black";

@@ -1,8 +1,7 @@
 body {
+  position: relative;
   margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
   height: 100vh;
   background-color: #000;
 }
@@ -10,18 +9,25 @@ body {
 #gameCanvas{
   background: skyblue;
   border: 3px solid white;
+  height: auto;
+  width: 90%;
 }
 
 #btns{
   position: absolute;
+  left: 5%;
   bottom: 20px;
-  width: 300px;
-  height: 150px;
+  width: 90%;
+  height: 30%;
 }
 #btns button{
+  user-select: none;
+  border: none;
   position: absolute;
-  width: 70px;
-  height: 70px;
+  width: 30%;
+  height: auto;
+  text-align: center;
+  font-size: 400%;
 }
 
 #btns button:active{
@@ -29,21 +35,21 @@ body {
 }
 
 #btns #leftBtn{
-  bottom: 0;
+  bottom: 5%;
   left: 0;
 }
 
 #btns #rightBtn {
-  bottom: 0;
-  right: 0;
+  bottom: 5%;
+  left: 70%;
 }
 
 #btns #upBtn {
-  top: 0;
-  left: 115px;
+  top: 5%;
+  left: 35%;
 }
 
 #btns #downBtn {
-  bottom: 0;
-  left: 115px;
+  bottom: 5%;
+  left: 35%;
 }
