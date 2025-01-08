@@ -1,5 +1,4 @@
 "use strict"
-
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -90,7 +89,7 @@ function detectCollision(){
   {
     playSoundCollision();
     ax = -(ax - ax * 0.6);
-    speedX = -(speedX - speedX * 0.4);
+    speedX = -(speedX - speedX * 0.6);
     x = radius + 1;
   }
   
@@ -98,7 +97,7 @@ function detectCollision(){
   {
     playSoundCollision();
     ax = -(ax - ax * 0.6);
-    speedX = -(speedX - speedX * 0.4);
+    speedX = -(speedX - speedX * 0.6);
     x = canvas.width - radius - 1;
   }
   
