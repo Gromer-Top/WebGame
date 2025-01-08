@@ -2,7 +2,7 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
  
-// Статы игрока(шарика)-->Позиция и физические характеристики<--
+//Статы игрока(шарика)>Position and Physical<
 //Позиция
 let y = canvas.height / 2;
 let x = canvas.width - 72;
@@ -18,11 +18,18 @@ let ax = 0.1;
 let axMax = 2;
 let ay = 1;
 
+let isGround = false;
+
 //Кнопки
 function left() {ax -= 0.7;}
 function right(){ax += 0.7;}
-function jump() {speedY=0;ay = jumpForce;}
-function brake() {}
+function jump(){
+  if(isGround==true){
+    speedY=0;
+    ay = jumpForce;
+  }
+}
+function brake(){}
 
 //Звуки
 function playSoundCollision(){
@@ -55,7 +62,12 @@ function detectCollision(){
   
   if (y >= canvas.height - radius)
   {
+    isGround = true;
     y = canvas.height-radius;
+  }
+  if (y < canvas.height - radius)
+  {
+    isGround = false;
   }
 }
 
@@ -80,7 +92,7 @@ function move(){
   if(ax.toFixed()== 0){ax = 0;}
   if(ax > 0){ax-= 0.03;}
   if(ax < 0){ax+= 0.03;}
-  if(ay < gravity){ay += 0.05;}
+  if(ay < gravity){ay += 0.1;}
 }
 
 //Отрисовка статы(для разработчиков)
