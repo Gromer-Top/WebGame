@@ -22,6 +22,7 @@ function playSoundCollision(){
   soundCollision.play();
 }
 
+
 function detectCollision(){
   if(x <= 0 + radius)
   {
@@ -49,9 +50,7 @@ function detectCollision(){
   }
 }
 
-
 function move(){
-  
   speedX += ax;
   speedY += ay;
   x += speedX * directionX;
@@ -64,8 +63,7 @@ function move(){
   if(ax < 0){ax=0;}
 }
 
-function drawStats()
-{
+function drawStats(){
   ctx.fillStyle = "black";
   ctx.font = "bold 20pt Arial";
   ctx.fillText("Speed: " + speedX.toFixed(2), 10, 25);
@@ -74,7 +72,7 @@ function drawStats()
     ctx.fillText("x: " + x.toFixed() + " y: " + y.toFixed(), 10, 50);
 }
 
-function drawPlayer() {
+function drawPlayer(){
   ctx.beginPath();
   ctx.arc(x, y, radius, 0, 2*Math.PI, false) ;
   ctx.fillStyle = 'red';
@@ -85,11 +83,11 @@ function drawPlayer() {
   move();    
 }
 
-function gameLoop() {
+function main() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawStats();
     drawPlayer();
-    requestAnimationFrame(gameLoop);
+    requestAnimationFrame(main);
 }
 
-gameLoop();
+main();
