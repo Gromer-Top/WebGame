@@ -3,27 +3,19 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
  
 let y = canvas.height / 2;
-let x = canvas.width - 50;
+let x = canvas.width - 72;
 let directionX = 0;
 let directionY = 0;
-let gravity = 2;
 let speedY = 0;
 let speedX = 0;
 let radius = 20;
 let ax = 0.1;
-
-let mass = 0.5;
-const ay = 9.8;
-let weight = mass * ay;
-
-let leftBtn = document.getElementById("leftBtn");
+let ay = 1;
 
 function left() {directionX = -1;ax += 0.7;}
 function right(){directionX = 1;ax += 0.7;}
 function jump() {}
-function brake() {
-
-}
+function brake() {}
 
 function playSoundCollision(){
   let soundCollision = new Audio('./Sounds/ballCollision.mp3');
@@ -61,7 +53,7 @@ function detectCollision(){
 function move(){
   
   speedX += ax;
-  speedY = weight;
+  speedY += ay;
   x += speedX * directionX;
   y += speedY;
   detectCollision();
@@ -72,23 +64,31 @@ function move(){
   if(ax < 0){ax=0;}
 }
 
+function drawStats()
+{
+  ctx.fillStyle = "black";
+  ctx.font = "bold 20pt Arial";
+  ctx.fillText("Speed: " + speedX.toFixed(2), 10, 25);
+    ctx.fillText("Ax: " + ax.toFixed(2), 200, 25);
+    ctx.fillText("DX: " + directionX.toFixed(2), 390, 25);
+    ctx.fillText("x: " + x.toFixed() + " y: " + y.toFixed(), 10, 50);
+}
+
+function drawPlayer() {
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, 2*Math.PI, false) ;
+  ctx.fillStyle = 'red';
+  ctx.fill();
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = 'red';
+  ctx.stroke();
+  move();    
+}
+
 function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "black";
-    ctx.font = "bold 20pt Arial";
-    ctx.fillText("Speed: " + speedX.toFixed(2), 10, 25);
-    ctx.fillText("Ax: " + ax.toFixed(2), 170, 25);
-    ctx.fillText("DX: " + directionX.toFixed(2), 10, 50);
-    ctx.fillText("X: " + x.toFixed(), 125, 50);
-    ctx.fillText("Y: " + y.toFixed(), 205, 50);
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, 2*Math.PI, false) ;
-    ctx.fillStyle = 'red';
-    ctx.fill();
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = 'red';
-    ctx.stroke();
-    move();    
+    drawStats();
+    drawPlayer();
     requestAnimationFrame(gameLoop);
 }
 
