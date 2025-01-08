@@ -2,8 +2,12 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
  
+// Статы игрока(шарика)
+//Позиция
 let y = canvas.height / 2;
 let x = canvas.width - 72;
+
+//Физические характеристики
 let directionX = 0;
 let directionY = 0;
 let speedY = 0;
@@ -14,16 +18,17 @@ let ax = 0.1;
 let axMax = 2;
 let ay = 1;
 
+//Кнопки
 function left() {directionX = -1;ax += 0.7;}
 function right(){directionX = 1;ax += 0.7;}
 function jump() {}
 function brake() {}
 
+//Звуки
 function playSoundCollision(){
   let soundCollision = new Audio('./Sounds/ballCollision.mp3');
   soundCollision.play();
 }
-
 
 function detectCollision(){
   if(x <= 0 + radius)
