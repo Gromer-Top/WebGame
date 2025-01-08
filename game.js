@@ -49,7 +49,7 @@ function controle() {
     function brake() {
       ax = 0;
     });
-  addEventListener("keydown",
+  document.addEventListener("keydown",
     function(event)
     {
       if (event.code == "KeyA"){
@@ -58,13 +58,22 @@ function controle() {
         }
       }
       if (event.code == "KeyD") {
-      right();
+        function right() {
+          ax += 0.7;
+        }
       }
       if (event.code == "KeyW") {
-        jump();
+        function jump() {
+          if(isGround==true){
+            speedY=0;
+            ay = jumpForce;
+          }
+        }
       }
       if (event.code == "KeyS") {
-        brake();
+        function brake() {
+          ax = 0;
+        }
       }
     });
 }
