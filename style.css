@@ -21,14 +21,15 @@ body {
   margin-left: auto;
   bottom: 5%;
   width: 50%;
-  height: 20%;
+  height: 15%;
 }
 
 #btns button{
   margin: auto;
+  border-radius: 10px;
   border: none;
   position: absolute;
-  height: 30%;
+  height: 45%;
   width: 30%;
   text-align: center;
 }
@@ -38,26 +39,26 @@ body {
 }
 
 #btns #vectorBtn {
-  top: 5%;
+  top: 0;
   left: 0;
 }
 
 #btns #leftBtn{
-  bottom: 5%;
+  bottom: 0;
   left: 0;
 }
 
 #btns #rightBtn {
-  bottom: 5%;
+  bottom: 0;
   left: 70%;
 }
 
 #btns #upBtn {
-  top: 5%;
+  top: 0;
   left: 35%;
 }
 
 #btns #downBtn {
-  bottom: 5%;
+  bottom: 0;
   left: 35%;
 }
