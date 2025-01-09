@@ -2,7 +2,7 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-let MAX_FRAME_RATE = 60, // frames per second
+let MAX_FRAME_RATE = 120, // frames per second
     FRAME_DIFF = 1000 / MAX_FRAME_RATE, 
     lastDraw = 0;
 
