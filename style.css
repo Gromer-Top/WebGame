@@ -37,6 +37,27 @@ body {
   background: #8C8C8C;
 }
 
+#btns #disableBtn{
+  width: 5%;
+  height: 10%;
+  top: 0;
+  left: 0;
+}
+
+#btns #v1Btn {
+  width: 5%;
+  height: 10%;
+  top: 0;
+  left: 10%;
+}
+
+#btns #v2Btn {
+  width: 5%;
+  height: 10%;
+  top: 0;
+  left: 20%;
+}
+
 #btns #leftBtn{
   bottom: 5%;
   left: 0;

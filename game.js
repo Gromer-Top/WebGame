@@ -161,12 +161,45 @@ function drawPlayer(){
   move();    
 }
 
+function drawVector(type) {
+  let vx = speedX * 15;
+  let vy = speedY * 15;
+  if(x + vx >= canvas.width - radius + 1){vx = canvas.width - x - 1;}
+  if(x + vx <= radius + 1){vx = 1 - x;}
+  if (y + vy >= canvas.height - radius - 1) { vy = canvas.height - y - 1;}
+  if(type == true){
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + vx, y);
+    ctx.moveTo(x + vx * 0.8, y - 10);
+    ctx.lineTo(x + vx, y);
+    ctx.moveTo(x + vx * 0.8, y + 10);
+    ctx.lineTo(x + vx, y);
+    ctx.closePath();
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = 'black';
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x, y + vy);
+    ctx.moveTo(x - 10, y + vy * 0.8);
+    ctx.lineTo(x, y + vy);
+    ctx.moveTo(x + 10, y + vy * 0.8);
+    ctx.lineTo(x, y + vy);
+    ctx.closePath();
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = 'black';
+    ctx.stroke();
+  }
+}
+
 //Главная функция
 function main() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     controle();
     drawStats();
     drawPlayer();
+    drawVector(false);
     requestAnimationFrame(main);
 }
 
