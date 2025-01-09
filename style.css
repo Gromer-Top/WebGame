@@ -26,6 +26,7 @@ body {
 
 #btns button{
   margin: auto;
+  font-weight: bold;
   border-radius: 10px;
   border: none;
   position: absolute;
