@@ -20,12 +20,18 @@ let ax = 0.1;
 let axMax = 2;
 let ay = gravity;
 
+let showVector = false;
+
 //Позиция
 let y = canvas.height - radius;
 let x = canvas.width - 72;
 
 //Состояние, когда шарик на полу
 let isGround = true;
+
+function showVec(){
+  showVector = !showVector;
+}
 
 //Кнопки
 function controle() {
@@ -161,7 +167,7 @@ function drawPlayer(){
   move();    
 }
 
-function drawVector(type) {
+function drawVector(type){
   let vx = speedX * 15;
   let vy = speedY * 15;
   if(x + vx >= canvas.width - radius + 1){vx = canvas.width - x - 1;}
@@ -199,7 +205,7 @@ function main() {
     controle();
     drawStats();
     drawPlayer();
-    drawVector(false);
+    drawVector(showVector);
     requestAnimationFrame(main);
 }
 
