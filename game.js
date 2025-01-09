@@ -52,27 +52,19 @@ function controle() {
     function(event)
     {
       if (event.code == "KeyA"){
-        function left() {
-          ax -= 0.7;
-        }
+        ax -= 0.7;
       }
       if (event.code == "KeyD") {
-        function right() {
-          ax += 0.7;
-        }
+        ax += 0.7;
       }
       if (event.code == "KeyW") {
-        function jump() {
-          if(isGround==true){
-            speedY=0;
-            ay = jumpForce;
-          }
+        if(isGround==true){
+          speedY=0;
+          ay = jumpForce;
         }
       }
       if (event.code == "KeyS") {
-        function brake() {
-          ax = 0;
-        }
+        ax = 0;
       }
     });
 }
@@ -88,16 +80,16 @@ function detectCollision(){
   if(x <= 0 + radius)
   {
     playSoundCollision();
-    ax = -(ax - ax * 0.6);
-    speedX = -(speedX - speedX * 0.6);
+    ax = -(ax - ax * 0.8);
+    speedX = -(speedX - speedX * 0.4);
     x = radius + 1;
   }
   
   if (x >= canvas.width - radius)
   {
     playSoundCollision();
-    ax = -(ax - ax * 0.6);
-    speedX = -(speedX - speedX * 0.6);
+    ax = -(ax - ax * 0.8);
+    speedX = -(speedX - speedX * 0.4);
     x = canvas.width - radius - 1;
   }
   
