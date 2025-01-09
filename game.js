@@ -146,6 +146,7 @@ function drawStats(){
   ctx.fillText("X: " + x.toFixed() + " Y: " + y.toFixed(), 10, 75);
   ctx.fillText("SPEED-Y: " + speedY.toFixed(2), 10, 50);
   ctx.fillText("AY: " + ay.toFixed(2), 220, 50);
+  ctx.fillText("Version: 0.0.1", 780, 25);
 }
 
 //Отрисовываем игрока
