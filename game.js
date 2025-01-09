@@ -2,6 +2,10 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
+let MAX_FRAME_RATE = 60, // frames per second
+    FRAME_DIFF = 1000 / MAX_FRAME_RATE, 
+    lastDraw = 0;
+
 //Кнопки
 let leftBtn = document.getElementById("leftBtn");
 let rightBtn = document.getElementById("rightBtn");
@@ -202,11 +206,18 @@ function drawVector(type){
 
 //Главная функция
 function main() {
+  let now = Date.now(),
+  diff = now - lastDraw;
+
+  if (diff >= FRAME_DIFF) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     controle();
     drawStats();
     drawPlayer();
     drawVector(showVector);
+
+    lastDraw = now;
+  }
     requestAnimationFrame(main);
 }
 
