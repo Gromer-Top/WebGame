@@ -20,6 +20,7 @@ let ax = 0.1;
 let axMax = 2;
 let ay = gravity;
 
+//Вектор
 let showVector = false;
 
 //Позиция
