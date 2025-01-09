@@ -18,7 +18,7 @@ let gravity = 10;
 let jumpForce = -2;
 let ax = 0.1;
 let axMax = 2;
-let ay = 1;
+let ay = gravity;
 
 //Позиция
 let y = canvas.height - radius;
