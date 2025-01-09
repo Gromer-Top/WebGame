@@ -7,29 +7,29 @@ let MAX_FRAME_RATE = 60, // frames per second
     lastDraw = 0;
 
 //Кнопки
-let leftBtn = document.getElementById("leftBtn");
-let rightBtn = document.getElementById("rightBtn");
-let upBtn = document.getElementById("upBtn");
-let downBtn = document.getElementById("downBtn");
+let leftBtn = document.getElementById("leftBtn"), 
+    rightBtn = document.getElementById("rightBtn"), 
+    upBtn = document.getElementById("upBtn"),
+    downBtn = document.getElementById("downBtn");
 
 //Статы игрока(шарика)>Position and Physical<
 //Физические характеристики
-let speedY = 0;
-let speedX = 0;
-let radius = 20;
-let speedMax = 10;
-let gravity = 10;
-let jumpForce = -2;
-let ax = 0.1;
-let axMax = 2;
-let ay = gravity;
+let speedY = 0,
+    speedX = 0,
+    radius = 20,
+    speedMax = 10,
+    gravity = 10,
+    jumpForce = -2, 
+    ax = 0.1,
+    axMax = 2,
+    ay = gravity;
 
 //Вектор
 let showVector = false;
 
 //Позиция
-let y = canvas.height - radius;
-let x = canvas.width - 72;
+let x = canvas.width - 72,
+    y = canvas.height - radius;
 
 //Состояние, когда шарик на полу
 let isGround = true;
