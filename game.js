@@ -163,7 +163,7 @@ function drawPlayer(){
   ctx.fillStyle = 'red';
   ctx.fill();
   ctx.lineWidth = 1;
-  ctx.strokeStyle = 'red';
+  ctx.strokeStyle = 'black';
   ctx.stroke();
   move();    
 }
@@ -184,7 +184,7 @@ function drawVector(type){
     ctx.lineTo(x + vx, y);
     ctx.closePath();
     ctx.lineWidth = 3;
-    ctx.strokeStyle = 'black';
+    ctx.strokeStyle = 'green';
     ctx.stroke();
     ctx.beginPath();
     ctx.moveTo(x, y);
@@ -195,7 +195,7 @@ function drawVector(type){
     ctx.lineTo(x, y + vy);
     ctx.closePath();
     ctx.lineWidth = 3;
-    ctx.strokeStyle = 'black';
+    ctx.strokeStyle = 'green';
     ctx.stroke();
   }
 }

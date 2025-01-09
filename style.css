@@ -10,7 +10,8 @@ body {
 #gameCanvas{
   position: absolute;
   background: skyblue;
-  border: 3px solid white;
+  border: 5px solid white;
+  border-radius: 5px;
   top: 5%;
   max-width: 90%;
   max-height: 70%;
