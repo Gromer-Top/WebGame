@@ -182,9 +182,9 @@ function drawVector(type){
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineTo(x + vx, y);
-    ctx.moveTo(x + vx * 0.8, y - 10);
+    ctx.moveTo(x + vx * 0.8, y - speedX);
     ctx.lineTo(x + vx, y);
-    ctx.moveTo(x + vx * 0.8, y + 10);
+    ctx.moveTo(x + vx * 0.8, y + speedX);
     ctx.lineTo(x + vx, y);
     ctx.closePath();
     ctx.lineWidth = 3;
@@ -193,9 +193,9 @@ function drawVector(type){
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineTo(x, y + vy);
-    ctx.moveTo(x - 10, y + vy * 0.8);
+    ctx.moveTo(x - speedY, y + vy * 0.8);
     ctx.lineTo(x, y + vy);
-    ctx.moveTo(x + 10, y + vy * 0.8);
+    ctx.moveTo(x + speedY, y + vy * 0.8);
     ctx.lineTo(x, y + vy);
     ctx.closePath();
     ctx.lineWidth = 3;
