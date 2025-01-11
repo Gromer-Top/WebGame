@@ -122,24 +122,27 @@ function detectCollision(){
   }
 }
 
+function normalizeSpeed(speed, speedMax){
+  if(speed[0] > speedMax[0]){speed[0] = speedMax[0];}
+  if(speed[0] < -speedMax[0]){speed[0] = -speedMax[0];}
+  if(speed[1] > speedMax[1]){speed[1] = speedMax[1];}
+  if(speed[1] < -(speedMax[1] / 2)){speed[1] = -(speedMax[1] / 2);}
+  return speed;
+}
+
 //Движение
 function move(){
   if(a[0] > aMax[0]){a[0] = aMax[0];}
   if(a[0] < -aMax[0]){a[0] = -aMax[0];}
   speed[0] += a[0];
   speed[1] += a[1];
-  if(speed[0] > speedMax[0]){speed[0] = speedMax[0];}
-  if(speed[0] < -speedMax[0]){speed[0] = -speedMax[0];}
-  if(speed[1] > speedMax[1]){speed[1] = speedMax[1];}
-  if(speed[1] > speedMax[1]){speed[1] = speedMax[1];}
-  if(speed[1] < -(speedMax[1] / 2)){speed[1] = -(speedMax[1] / 2);}
+  normalizeSpeed(speed, speedMax);
   position[0] += speed[0];
   position[1] += speed[1];
   detectCollision();
   if(speed[0].toFixed()== 0){speed[0] = 0;}
   if(speed[0] > 0){speed[0] -= 0.2;}
   if(speed[0] < 0){speed[0] += 0.2;}
-  if(speed[1] < 10) {speed[1] += 0.2;}
   if(a[0].toFixed()== 0){a[0] = 0;}
   if(a[0] > 0){a[0] -= 0.05;}
   if(a[0] < 0){a[0] += 0.05;}
@@ -150,8 +153,8 @@ function move(){
 function drawUpdate(){
   ctx.fillStyle = "black";
   ctx.font = "bold 20pt Arial";
-  ctx.fillText("Version:   0.0.1", 750, 25);
-  ctx.fillText(">Update physic", 750, 50);
+  ctx.fillText("Версия:  0.0.1a", 650, 25);
+  ctx.fillText(">Исправление физики<", 650, 50);
 }
 
 function drawStats() {
