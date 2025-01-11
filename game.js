@@ -14,13 +14,16 @@ let leftBtn = document.getElementById("leftBtn"),
 
 //Статы игрока(шарика)>Position and Physical<
 //Физические характеристики
-let speed = [10, 10],
-    position = [50,50], 
-    a = [10, 10],
+let speed = [0, 0],
+    position = [0, 0], 
+    a = [0, 0],
     aMax = [2, 10], 
     radius = 20,
     speedMax = [10, 10],
     jumpForce = -2;
+
+position[0] = canvas.width - 100;
+position[1] = canvas.height - radius;
 
 //Вектор
 let showVector = false;
