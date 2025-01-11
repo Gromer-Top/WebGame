@@ -153,8 +153,8 @@ function move(){
 function drawUpdate(){
   ctx.fillStyle = "black";
   ctx.font = "bold 20pt Arial";
-  ctx.fillText("Версия:  0.0.1a", 650, 25);
-  ctx.fillText(">Исправление физики<", 650, 50);
+  ctx.fillText("Version:  0.0.1a", 750, 25);
+  ctx.fillText(">Fix physic<", 750, 50);
 }
 
 function drawStats() {
