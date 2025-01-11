@@ -14,22 +14,16 @@ let leftBtn = document.getElementById("leftBtn"),
 
 //Статы игрока(шарика)>Position and Physical<
 //Физические характеристики
-let speedY = 0,
-    speedX = 0,
+let speed = [10, 10],
+    position = [50,50], 
+    a = [10, 10],
+    aMax = [2, 10], 
     radius = 20,
-    speedMax = 10,
-    gravity = 10,
-    jumpForce = -2, 
-    ax = 0.1,
-    axMax = 2,
-    ay = gravity;
+    speedMax = [10, 10],
+    jumpForce = -2;
 
 //Вектор
 let showVector = false;
-
-//Позиция
-let x = canvas.width - 72,
-    y = canvas.height - radius;
 
 //Состояние, когда шарик на полу
 let isGround = true;
@@ -42,40 +36,40 @@ function showVec(){
 function controle() {
   leftBtn.addEventListener('click', 
     function left() {
-      ax -= 0.7;
+      a[0] -= 0.7;
     });
   rightBtn.addEventListener('click',
     function right() {
-      ax += 0.7;
+      a[0] += 0.7;
     });
   upBtn.addEventListener('click',
     function jump() {
       if(isGround==true){
-        speedY=0;
-        ay = jumpForce;
+        speed[1] = 0;
+        a[1] = jumpForce;
       }
     });
   downBtn.addEventListener('click',
     function brake() {
-      ax = 0;
+      a[0] = 0;
     });
   document.addEventListener("keydown",
     function(event)
     {
       if (event.code == "KeyA"){
-        ax -= 0.7;
+        a[0] -= 0.7;
       }
       if (event.code == "KeyD") {
-        ax += 0.7;
+        a[0] += 0.7;
       }
       if (event.code == "KeyW") {
         if(isGround==true){
-          speedY=0;
-          ay = jumpForce;
+          speed[1] = 0;
+          a[1] = jumpForce;
         }
       }
       if (event.code == "KeyS") {
-        ax = 0;
+        a[0] = 0;
       }
     });
 }
@@ -88,37 +82,38 @@ function playSoundCollision(){
 
 //Проверка столкновений и воспроизведение звука при столкновении
 function detectCollision(){
-  if(x <= 0 + radius)
+  if(position[0] <= 0 + radius)
   {
     //playSoundCollision();
-    ax = -(ax - ax * 0.8);
-    speedX = -(speedX - speedX * 0.4);
-    x = radius + 1;
+    a[0] = -(a[0] - a[0] * 0.8);
+    console.log(speed);
+    speed[0] = -(speed[0] - speed[0] * 0.4);
+    position[0] = radius + 1;
   }
   
-  if (x >= canvas.width - radius)
+  if (position[0] >= canvas.width - radius)
   {
     //playSoundCollision();
-    ax = -(ax - ax * 0.8);
-    speedX = -(speedX - speedX * 0.4);
-    x = canvas.width - radius - 1;
+    a[0] = -(a[0] - a[0] * 0.8);
+    speed[0] = -(speed[0] - speed[0] * 0.4);
+    position[0] = canvas.width - radius - 1;
   }
   
-  if (y <= 0 + radius)
+  if (position[1] <= 0 + radius)
   {
-    y = radius;
+    position[1] = radius;
   }
-  if (y >= canvas.height - radius && isGround == false)
+  if (position[1] >= canvas.height - radius && isGround == false)
   {
     //playSoundCollision();
   }
   
-  if (y >= canvas.height - radius)
+  if (position[1] >= canvas.height - radius)
   {
     isGround = true;
-    y = canvas.height-radius;
+    position[1] = canvas.height - radius;
   }
-  if (y < canvas.height - radius)
+  if (position[1] < canvas.height - radius)
   {
     isGround = false;
   }
@@ -126,26 +121,26 @@ function detectCollision(){
 
 //Движение
 function move(){
-  if(ax>axMax){ax=axMax;}
-  if(ax<-axMax){ax=-axMax;}
-  speedX += ax;
-  speedY += ay;
-  if(speedX > speedMax){speedX=speedMax;}
-  if(speedX < -speedMax){speedX=-speedMax;}
-  if(speedY > gravity){speedY = gravity;}
-  if(speedY > gravity){speedY = gravity;}
-  if(speedY < -5){speedY = -5;}
-  x += speedX;
-  y += speedY;
+  if(a[0] > aMax[0]){a[0] = aMax[0];}
+  if(a[0] < -aMax[0]){a[0] = -aMax[0];}
+  speed[0] += a[0];
+  speed[1] += a[1];
+  if(speed[0] > speedMax[0]){speed[0] = speedMax[0];}
+  if(speed[0] < -speedMax[0]){speed[0] = -speedMax[0];}
+  if(speed[1] > speedMax[1]){speed[1] = speedMax[1];}
+  if(speed[1] > speedMax[1]){speed[1] = speedMax[1];}
+  if(speed[1] < -(speedMax[1] / 2)){speed[1] = -(speedMax[1] / 2);}
+  position[0] += speed[0];
+  position[1] += speed[1];
   detectCollision();
-  if(speedX.toFixed()== 0){speedX = 0;}
-  if(speedX > 0){speedX-=0.2;}
-  if(speedX < 0){speedX+=0.2;}
-  if(speedY < 10) {speedY += 0.2;}
-  if(ax.toFixed()== 0){ax = 0;}
-  if(ax > 0){ax-= 0.05;}
-  if(ax < 0){ax+= 0.05;}
-  if(ay < gravity){ay += 0.1;}
+  if(speed[0].toFixed()== 0){speed[0] = 0;}
+  if(speed[0] > 0){speed[0] -= 0.2;}
+  if(speed[0] < 0){speed[0] += 0.2;}
+  if(speed[1] < 10) {speed[1] += 0.2;}
+  if(a[0].toFixed()== 0){a[0] = 0;}
+  if(a[0] > 0){a[0] -= 0.05;}
+  if(a[0] < 0){a[0] += 0.05;}
+  if(a[1] < speedMax[1]){a[1] += 0.1;}
 }
 
 //Отрисовка статы(для разработчиков)
@@ -159,17 +154,17 @@ function drawUpdate(){
 function drawStats() {
   ctx.fillStyle = "black";
   ctx.font = "bold 20pt Arial";
-  ctx.fillText("SPEED-X: " + speedX.toFixed(2), 10, 25);
-  ctx.fillText("AX: " + ax.toFixed(2), 220, 25);
-  ctx.fillText("X: " + x.toFixed() + " Y: " + y.toFixed(), 10, 75);
-  ctx.fillText("SPEED-Y: " + speedY.toFixed(2), 10, 50);
-  ctx.fillText("AY: " + ay.toFixed(2), 220, 50);
+  ctx.fillText("SPEED-X: " + speed[0].toFixed(2), 10, 25);
+  ctx.fillText("AX: " + a[0].toFixed(2), 220, 25);
+  ctx.fillText("X: " + position[0].toFixed() + " Y: " + position[1].toFixed(), 10, 75);
+  ctx.fillText("SPEED-Y: " + speed[1].toFixed(2), 10, 50);
+  ctx.fillText("AY: " + a[1].toFixed(2), 220, 50);
 }
 
 //Отрисовываем игрока
 function drawPlayer(){
   ctx.beginPath();
-  ctx.arc(x, y, radius, 0, 2*Math.PI, false) ;
+  ctx.arc(position[0], position[1], radius, 0, 2*Math.PI, false) ;
   ctx.fillStyle = 'red';
   ctx.fill();
   ctx.lineWidth = 1;
@@ -179,31 +174,30 @@ function drawPlayer(){
 }
 
 function drawVector(type){
-  let vx = speedX * 15;
-  let vy = speedY * 15;
-  if(x + vx >= canvas.width - radius){vx = canvas.width - x - 1;}
-  if(x + vx <= radius){vx = 1 - x;}
-  if (y + vy >= canvas.height - radius) { vy = canvas.height - y - 1;}
+  let v = [speed[0] * 15, speed[1] * 15];
+  if(position[0] + v[0] >= canvas.width - radius){v[0] = canvas.width - position[0] - 1;}
+  if(position[0] + v[0] <= radius){v[0] = 1 - position[0];}
+  if (position[1] + v[1] >= canvas.height - radius) { v[1] = canvas.height - position[1] - 1;}
   if(type == true){
     drawStats();
     ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(x + vx, y);
-    ctx.moveTo(x + vx * 0.8, y - vx / 15);
-    ctx.lineTo(x + vx, y);
-    ctx.moveTo(x + vx * 0.8, y + vx / 15);
-    ctx.lineTo(x + vx, y);
+    ctx.moveTo(position[0], position[1]);
+    ctx.lineTo(position[0] + v[0], position[1]);
+    ctx.moveTo(position[0] + v[0] * 0.8, position[1] - v[0] / 15);
+    ctx.lineTo(position[0] + v[0], position[1]);
+    ctx.moveTo(position[0] + v[0] * 0.8, position[1] + v[0] / 15);
+    ctx.lineTo(position[0] + v[0], position[1]);
     ctx.closePath();
     ctx.lineWidth = 3;
     ctx.strokeStyle = 'green';
     ctx.stroke();
     ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(x, y + vy);
-    ctx.moveTo(x - vy / 15, y + vy * 0.8);
-    ctx.lineTo(x, y + vy);
-    ctx.moveTo(x + vy / 15, y + vy * 0.8);
-    ctx.lineTo(x, y + vy);
+    ctx.moveTo(position[0], position[1]);
+    ctx.lineTo(position[0], position[1] + v[1]);
+    ctx.moveTo(position[0] - v[1] / 15, position[1] + v[1] * 0.8);
+    ctx.lineTo(position[0], position[1] + v[1]);
+    ctx.moveTo(position[0] + v[1] / 15, position[1] + v[1] * 0.8);
+    ctx.lineTo(position[0], position[1] + v[1]);
     ctx.closePath();
     ctx.lineWidth = 3;
     ctx.strokeStyle = 'green';
