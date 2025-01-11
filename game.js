@@ -149,7 +149,14 @@ function move(){
 }
 
 //Отрисовка статы(для разработчиков)
-function drawStats(){
+function drawUpdate(){
+  ctx.fillStyle = "black";
+  ctx.font = "bold 20pt Arial";
+  ctx.fillText("Version:   0.0.1", 750, 25);
+  ctx.fillText(">Update physic", 750, 50);
+}
+
+function drawStats() {
   ctx.fillStyle = "black";
   ctx.font = "bold 20pt Arial";
   ctx.fillText("SPEED-X: " + speedX.toFixed(2), 10, 25);
@@ -157,8 +164,6 @@ function drawStats(){
   ctx.fillText("X: " + x.toFixed() + " Y: " + y.toFixed(), 10, 75);
   ctx.fillText("SPEED-Y: " + speedY.toFixed(2), 10, 50);
   ctx.fillText("AY: " + ay.toFixed(2), 220, 50);
-  ctx.fillText("Version:   0.0.1", 750, 25);
-  ctx.fillText(">Update physic", 750, 50);
 }
 
 //Отрисовываем игрока
@@ -180,6 +185,7 @@ function drawVector(type){
   if(x + vx <= radius){vx = 1 - x;}
   if (y + vy >= canvas.height - radius) { vy = canvas.height - y - 1;}
   if(type == true){
+    drawStats();
     ctx.beginPath();
     ctx.moveTo(x, y);
     ctx.lineTo(x + vx, y);
@@ -213,7 +219,7 @@ function main() {
   if (diff >= FRAME_DIFF) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     controle();
-    drawStats();
+    drawUpdate();
     drawVector(showVector);
     drawPlayer();
 
