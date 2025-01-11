@@ -90,7 +90,7 @@ function playSoundCollision(){
 function detectCollision(){
   if(x <= 0 + radius)
   {
-    playSoundCollision();
+    //playSoundCollision();
     ax = -(ax - ax * 0.8);
     speedX = -(speedX - speedX * 0.4);
     x = radius + 1;
@@ -98,7 +98,7 @@ function detectCollision(){
   
   if (x >= canvas.width - radius)
   {
-    playSoundCollision();
+    //playSoundCollision();
     ax = -(ax - ax * 0.8);
     speedX = -(speedX - speedX * 0.4);
     x = canvas.width - radius - 1;
@@ -110,7 +110,7 @@ function detectCollision(){
   }
   if (y >= canvas.height - radius && isGround == false)
   {
-    playSoundCollision();
+    //playSoundCollision();
   }
   
   if (y >= canvas.height - radius)
@@ -143,8 +143,8 @@ function move(){
   if(speedX < 0){speedX+=0.2;}
   if(speedY < 10) {speedY += 0.2;}
   if(ax.toFixed()== 0){ax = 0;}
-  if(ax > 0){ax-= 0.03;}
-  if(ax < 0){ax+= 0.03;}
+  if(ax > 0){ax-= 0.05;}
+  if(ax < 0){ax+= 0.05;}
   if(ay < gravity){ay += 0.1;}
 }
 
@@ -157,7 +157,8 @@ function drawStats(){
   ctx.fillText("X: " + x.toFixed() + " Y: " + y.toFixed(), 10, 75);
   ctx.fillText("SPEED-Y: " + speedY.toFixed(2), 10, 50);
   ctx.fillText("AY: " + ay.toFixed(2), 220, 50);
-  ctx.fillText("Version: 0.0.1", 780, 25);
+  ctx.fillText("Version:   0.0.1", 750, 25);
+  ctx.fillText(">Update physic", 750, 50);
 }
 
 //Отрисовываем игрока
@@ -175,9 +176,9 @@ function drawPlayer(){
 function drawVector(type){
   let vx = speedX * 15;
   let vy = speedY * 15;
-  if(x + vx >= canvas.width - radius + 1){vx = canvas.width - x - 1;}
-  if(x + vx <= radius + 1){vx = 1 - x;}
-  if (y + vy >= canvas.height - radius - 1) { vy = canvas.height - y - 1;}
+  if(x + vx >= canvas.width - radius){vx = canvas.width - x - 1;}
+  if(x + vx <= radius){vx = 1 - x;}
+  if (y + vy >= canvas.height - radius) { vy = canvas.height - y - 1;}
   if(type == true){
     ctx.beginPath();
     ctx.moveTo(x, y);
