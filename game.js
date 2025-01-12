@@ -117,8 +117,7 @@ function normalizeSpeed(speed, speedMax){
 
 //Движение
 function move(){
-  if(a[0] > aMax[0]){a[0] = aMax[0];}
-  if(a[0] < -aMax[0]){a[0] = -aMax[0];}
+  a[0] = normalizeSpeed(a, aMax)[0];
   speed[0] += a[0];
   speed[1] += a[1];
   normalizeSpeed(speed, speedMax);
@@ -130,7 +129,8 @@ function move(){
   if(speed[0] > 0){a[0] -= 0.2;}
   if(speed[0] < 0){a[0] += 0.2;}
   if(a[0].toFixed() == 0 && speed[0].toFixed() == 0){a[0] = 0;speed[0] = 0;}
-  if(a[1] < speedMax[1]){a[1] += 0.1;}
+  if(a[1] < speedMax[1] && !isGround){a[1] += 0.1;}
+  if(isGround){a[1] = 0;speed[1] = 0;}
 }
 
 //Отрисовка статы(для разработчиков)
