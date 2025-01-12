@@ -72,7 +72,7 @@ function controle() {
         }
       }
       if (event.code == "KeyS") {
-        if(!isGround){a[1] += 2;}
+        if(!isGround){a[1] += 0.7;}
       }
     });
 }
