@@ -54,7 +54,7 @@ function controle() {
     });
   downBtn.addEventListener('click',
     function brake() {
-      a[0] = 0;
+      if(!isGround){a[1] += 0.7;}
     });
   document.addEventListener("keydown",
     function(event)
@@ -72,7 +72,7 @@ function controle() {
         }
       }
       if (event.code == "KeyS") {
-        a[0] = 0;
+        if(!isGround){a[1] += 2;}
       }
     });
 }
