@@ -77,40 +77,25 @@ function controle() {
     });
 }
 
-//Звуки
-function playSoundCollision(){
-  let soundCollision = new Audio('./Sounds/ballCollision.mp3');
-  soundCollision.play();
-}
-
 //Проверка столкновений и воспроизведение звука при столкновении
 function detectCollision(){
   if(position[0] <= 0 + radius)
   {
-    //playSoundCollision();
     a[0] = -(a[0] - a[0] * 0.8);
     console.log(speed);
     speed[0] = -(speed[0] - speed[0] * 0.4);
     position[0] = radius + 1;
   }
-  
   if (position[0] >= canvas.width - radius)
   {
-    //playSoundCollision();
     a[0] = -(a[0] - a[0] * 0.8);
     speed[0] = -(speed[0] - speed[0] * 0.4);
     position[0] = canvas.width - radius - 1;
   }
-  
   if (position[1] <= 0 + radius)
   {
     position[1] = radius;
   }
-  if (position[1] >= canvas.height - radius && isGround == false)
-  {
-    //playSoundCollision();
-  }
-  
   if (position[1] >= canvas.height - radius)
   {
     isGround = true;
@@ -146,6 +131,7 @@ function move(){
   if(a[0].toFixed()== 0){a[0] = 0;}
   if(a[0] > 0){a[0] -= 0.05;}
   if(a[0] < 0){a[0] += 0.05;}
+  
   if(a[1] < speedMax[1]){a[1] += 0.1;}
 }
 
