@@ -125,13 +125,10 @@ function move(){
   position[0] += speed[0];
   position[1] += speed[1];
   detectCollision();
-  if(speed[0].toFixed()== 0){speed[0] = 0;}
-  if(speed[0] > 0){speed[0] -= 0.2;}
-  if(speed[0] < 0){speed[0] += 0.2;}
   if(a[0].toFixed()== 0){a[0] = 0;}
-  if(a[0] > 0){a[0] -= 0.05;}
-  if(a[0] < 0){a[0] += 0.05;}
-  
+  if(speed[0].toFixed() == 0){a[0] == 0;}
+  if(speed[0] > 0){a[0] -= 0.2;}
+  if(speed[0] < 0){a[0] += 0.2;}
   if(a[1] < speedMax[1]){a[1] += 0.1;}
 }
 
@@ -177,19 +174,16 @@ function drawVector(type){
     ctx.lineTo(position[0] + v[0], position[1]);
     ctx.moveTo(position[0] + v[0] * 0.8, position[1] - v[0] / 15);
     ctx.lineTo(position[0] + v[0], position[1]);
-    ctx.moveTo(position[0] + v[0] * 0.8, position[1] + v[0] / 15);
-    ctx.lineTo(position[0] + v[0], position[1]);
-    ctx.closePath();
+    ctx.lineTo(position[0] + v[0] * 0.8, position[1] + v[0] / 15);
     ctx.lineWidth = 3;
-    ctx.strokeStyle = 'green';
+    ctx.strokeStyle = 'red';
     ctx.stroke();
     ctx.beginPath();
     ctx.moveTo(position[0], position[1]);
     ctx.lineTo(position[0], position[1] + v[1]);
     ctx.moveTo(position[0] - v[1] / 15, position[1] + v[1] * 0.8);
     ctx.lineTo(position[0], position[1] + v[1]);
-    ctx.moveTo(position[0] + v[1] / 15, position[1] + v[1] * 0.8);
-    ctx.lineTo(position[0], position[1] + v[1]);
+    ctx.lineTo(position[0] + v[1] / 15, position[1] + v[1] * 0.8);
     ctx.closePath();
     ctx.lineWidth = 3;
     ctx.strokeStyle = 'green';
