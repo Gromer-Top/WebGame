@@ -18,7 +18,7 @@ let speed = [0, 0],
     position = [0, 0], 
     a = [0, 0],
     aMax = [2, 10], 
-    radius = 20,
+    radius = 25,
     speedMax = [10, 10],
     jumpForce = -2;
 
@@ -164,7 +164,7 @@ function drawPlayer(){
 }
 
 function drawVector(type){
-  let v = [speed[0] * 15, speed[1] * 15];
+  let v = [speed[0] * radius / 2, speed[1] * radius / 2];
   if(position[0] + v[0] >= canvas.width - radius){v[0] = canvas.width - position[0] - 1;}
   if(position[0] + v[0] <= radius){v[0] = 1 - position[0];}
   if (position[1] + v[1] >= canvas.height - radius) { v[1] = canvas.height - position[1] - 1;}
@@ -176,7 +176,7 @@ function drawVector(type){
     ctx.moveTo(position[0] + v[0] * 0.8, position[1] - v[0] / 15);
     ctx.lineTo(position[0] + v[0], position[1]);
     ctx.lineTo(position[0] + v[0] * 0.8, position[1] + v[0] / 15);
-    ctx.lineWidth = 3;
+    ctx.lineWidth = radius/5;
     ctx.strokeStyle = 'red';
     ctx.stroke();
     ctx.beginPath();
@@ -186,7 +186,7 @@ function drawVector(type){
     ctx.lineTo(position[0], position[1] + v[1]);
     ctx.lineTo(position[0] + v[1] / 15, position[1] + v[1] * 0.8);
     ctx.closePath();
-    ctx.lineWidth = 3;
+    ctx.lineWidth = radius/5;
     ctx.strokeStyle = 'green';
     ctx.stroke();
   }
