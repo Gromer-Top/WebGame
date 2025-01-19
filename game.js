@@ -1,4 +1,5 @@
 "use strict"
+const startTime = performance.now()
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -35,54 +36,54 @@ function showVec(){
   showVector = !showVector;
 }
 
-//Кнопки
-function controle() {
-  leftBtn.addEventListener('click', 
-    function left() {
-      a[0] -= 0.7;
-    });
-  rightBtn.addEventListener('click',
-    function right() {
-      a[0] += 0.7;
-    });
-  upBtn.addEventListener('click',
-    function jump() {
-      if(isGround==true){
+function moveLeft(){
+  a[0] -= 2;
+}
+
+function moveRight() {
+  a[0] += 2;
+}
+
+function moveUp() {
+  if(isGround==true){
         speed[1] = 0;
         a[1] = jumpForce;
-      }
-    });
-  downBtn.addEventListener('click',
-    function brake() {
-      if(!isGround){a[1] += 0.7;}
-    });
+  }
+}
+
+function moveDown() {
+  if(!isGround){a[1] += 2;}
+}
+
+//Кнопки
+function controle() {
+  leftBtn.addEventListener('click',moveLeft);
+  rightBtn.addEventListener('click',moveRight);
+  upBtn.addEventListener('click', moveUp);
+  downBtn.addEventListener('click',moveDown);
   document.addEventListener("keydown",
     function(event)
     {
       if (event.code == "KeyA"){
-        a[0] -= 0.7;
+        moveLeft();
       }
       if (event.code == "KeyD") {
-        a[0] += 0.7;
+        moveRight();
       }
       if (event.code == "KeyW") {
-        if(isGround==true){
-          speed[1] = 0;
-          a[1] = jumpForce;
-        }
+        moveUp();
       }
       if (event.code == "KeyS") {
-        if(!isGround){a[1] += 0.7;}
+        moveDown();
       }
     });
 }
 
-//Проверка столкновений и воспроизведение звука при столкновении
+//Проверка столкновений
 function detectCollision(){
   if(position[0] <= 0 + radius)
   {
     a[0] = -(a[0] - a[0] * 0.8);
-    console.log(speed);
     speed[0] = -(speed[0] - speed[0] * 0.4);
     position[0] = radius + 1;
   }
@@ -206,7 +207,8 @@ function main() {
 
     lastDraw = now;
   }
-    requestAnimationFrame(main);
+  
+  requestAnimationFrame(main);
 }
-
+console.log(startTime);
 main();
