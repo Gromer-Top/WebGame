@@ -137,14 +137,14 @@ function move(){
 //Отрисовка статы(для разработчиков)
 function drawUpdate(){
   ctx.fillStyle = "black";
-  ctx.font = "bold 20pt Arial";
+  ctx.font = "20pt Verdana";
   ctx.fillText("Version:  0.0.2a", 750, 25);
   ctx.fillText("Control: W/A/S/D", 750, 50);
 }
 
 function drawStats() {
   ctx.fillStyle = "black";
-  ctx.font = "bold 20pt Arial";
+  ctx.font = "italic 20pt Arial";
   ctx.fillText("SPEED-X: " + speed[0].toFixed(2), 10, 25);
   ctx.fillText("AX: " + a[0].toFixed(2), 220, 25);
   ctx.fillText("X: " + position[0].toFixed() + " Y: " + position[1].toFixed(), 10, 75);
